@@ -7,8 +7,6 @@ import { MongoClient } from "mongodb";
 const URL = process.env.DB;
 const app = express();
 
-let mentor = [];
-let student = [];
 // MidleWare
 app.use(express.json());
 app.use(cors());
@@ -21,6 +19,9 @@ const createConnection = async () => {
 };
 const client = await createConnection();
 
+app.get("/", (req, res) => {
+  res.json({ message: "Welcome" });
+});
 // getting mentor data
 app.get("/mentors", async (req, res) => {
   try {
